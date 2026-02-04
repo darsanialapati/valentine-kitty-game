@@ -22,10 +22,11 @@ body {
   padding: 10px 15px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 100;
 }
 
-/* Introduction page */
-#intro {
+/* Level intro screen */
+.levelIntro {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -34,28 +35,25 @@ body {
   background: white;
   padding: 30px;
   border-radius: 20px;
-  max-width: 500px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  max-width: 500px;
+  z-index: 90;
 }
 
-#intro h1 {
+.levelIntro h1 {
   font-size: 32px;
   color: #ff66aa;
   margin-bottom: 15px;
   animation: bounce 1.2s infinite;
 }
 
-#intro p, #intro ol {
+.levelIntro p {
   font-size: 18px;
   line-height: 1.6;
   color: #ff3399;
 }
 
-#intro ol li {
-  margin-bottom: 10px;
-}
-
-#startBtn {
+.levelIntro button {
   font-size: 20px;
   background-color: #ff66aa;
   color: #fff;
@@ -66,12 +64,12 @@ body {
   transition: transform 0.2s, background 0.3s;
 }
 
-#startBtn:hover {
+.levelIntro button:hover {
   background-color: #ff3399;
   transform: scale(1.1);
 }
 
-/* Bounce animation for heading */
+/* Bounce animation */
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
@@ -89,9 +87,10 @@ body {
   text-align: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   max-width: 400px;
+  z-index: 80;
 }
 
-/* Input and button styling */
+/* Inputs and buttons */
 #answer {
   padding: 10px;
   font-size: 16px;
@@ -116,52 +115,49 @@ button:hover {
   background-color: #ff66aa;
 }
 
-/* Sneaky box (Level 2) */
-#hiddenBox {
-  display: none;
+/* Level 3 background */
+#kittenGame {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  background: pink;
-  border-radius: 15px;
-  text-align: center;
-  line-height: 80px;
-  font-weight: bold;
-  font-size: 32px;
-  cursor: pointer;
-  user-select: none;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-  transition: top 0.1s, left 0.1s;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("background.jpg") no-repeat center center / cover;
+  z-index: 70;
 }
 
-/* Level 3 hidden kittens */
+/* Hidden kittens */
 #kittenGame img {
   position: absolute;
   width: 50px;
   cursor: pointer;
 }
 
-/* Big cat final scene */
-#bigCat {
+/* Final scene big kitten */
+#finalScene {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 120px;
+  text-align: center;
 }
 
-#letter {
+#bigKitten {
+  font-size: 120px;
+  margin-bottom: 15px;
+}
+
+/* Falling hearts */
+.heart {
   position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 200px;
-  background: #fff0f5;
-  border-radius: 20px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-  text-align: center;
-  line-height: 200px;
   font-size: 20px;
-  padding: 20px;
+  color: #ff6699;
+  animation: fall linear;
+  pointer-events: none;
+  z-index: 50;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0); opacity:1; }
+  100% { transform: translateY(100vh); opacity:0; }
 }
