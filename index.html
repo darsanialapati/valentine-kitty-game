@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kitty Valentine Game 💘</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #fff0f5;
+      padding-top: 50px;
+    }
+
+    .kitty {
+      font-size: 80px;
+      cursor: pointer;
+    }
+
+    .box {
+      margin-top: 40px;
+      padding: 20px;
+      border: 2px dashed #ff69b4;
+      display: inline-block;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💖 Valentine Kitty Game 💖</h1>
+  <p>Click the kitty to start</p>
+
+  <div class="kitty">🐱</div>
+
+  <div class="box" style="display:none;">
+    🎁 Mystery Box
+  </div>
+
+  <script>
+    const kitty = document.querySelector('.kitty');
+    const box = document.querySelector('.box');
+
+    kitty.addEventListener('click', () => {
+      alert("Hi! Solve a fun challenge to open the box 💕");
+      box.style.display = "inline-block";
+    });
+
+    box.addEventListener('click', () => {
+      alert("Sneaky box coming soon 😼");
+    });
+  </script>
+
+</body>
+</html>
