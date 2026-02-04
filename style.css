@@ -17,6 +17,8 @@ body {
   top: 20px;
   left: 20px;
   font-size: 80px;
+  pointer-events: none; /* so it doesn’t block clicks */
+  user-select: none;
 }
 
 /* Game box */
@@ -29,9 +31,49 @@ body {
   padding: 30px;
   border-radius: 20px;
   text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
 }
 
-/* Sneaky box (hidden for now) */
+/* Input and button styling */
+#answer {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 70%;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ff99cc;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #ff66aa;
+}
+
+/* Sneaky box (Level 2) */
 #hiddenBox {
-  display: none;
+  display: none; /* initially hidden */
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: pink;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 80px;
+  font-weight: bold;
+  font-size: 32px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  transition: top 0.1s, left 0.1s; /* smooth movement */
 }
