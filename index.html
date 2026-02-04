@@ -2,27 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Kitty Quest 💘</title>
+  <title>Valentine Kitty Game 💘</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Kitty character on screen -->
-  <div id="kitty">🐱</div>
+  <!-- Treat counter -->
+  <div id="treatCounter">🐾 Treats: 0</div>
+
+  <!-- Introduction / Rules page -->
+  <div id="intro">
+    <h1>💖 Welcome to the Valentine Kitty Game! 🐱💌</h1>
+    <p>Are you smart 🧠 and cute 😽 enough to help our hungry kitty?</p>
+    <p>This is not like all the other games you play… it's a little tricky, but we believe in you! 🌸✨</p>
+    
+    <h3>🐾 Rules to play:</h3>
+    <ol>
+      <li>Have a <strong>paw-sitive attitude</strong> 🐾</li>
+      <li>Believe in <strong>love</strong> ❤️</li>
+      <li>Most of all, <strong>have fun!</strong> 😺</li>
+    </ol>
+
+    <p><em>Hint / Note:</em> Keep some <strong>snickers 🍫</strong> nearby in case you need help!</p>
+
+    <button id="startBtn">Let's Start the Adventure! 🐾</button>
+  </div>
 
   <!-- Game box -->
-  <div id="game">
+  <div id="game" style="display:none;">
     <h2 id="questTitle"></h2>
     <p id="questText"></p>
-
     <input type="text" id="answer" placeholder="Your answer" />
     <button onclick="submitAnswer()">Submit</button>
-
     <p id="feedback"></p>
   </div>
 
   <!-- Sneaky box (Level 2) -->
   <div id="hiddenBox"></div>
+
+  <!-- Level 3: Hidden kittens -->
+  <div id="kittenGame"></div>
+
+  <!-- Big cat final scene -->
+  <div id="bigCat" style="display:none;">😺</div>
+  <div id="letter" style="display:none;"></div>
 
   <script src="script.js"></script>
 </body>
