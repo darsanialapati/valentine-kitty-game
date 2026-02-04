@@ -1,13 +1,5 @@
-let quest = 1;
-
-// Grab elements from the page
-const title = document.getElementById("questTitle");
-const text = document.getElementById("questText");
-const answerInput = document.getElementById("answer");
-const feedback = document.getElementById("feedback");
-
 function submitAnswer() {
-  const answer = answerInput.value.trim();
+  const answer = answerInput.value.trim().toLowerCase(); // convert to lowercase
 
   // Quest 1: Kitty math (10 + 2)
   if (quest === 1 && answer === "12") {
@@ -17,6 +9,14 @@ function submitAnswer() {
     answerInput.value = "";
     feedback.innerText = "Purr-fect! 😸";
   } 
+  // Quest 2: Type the word "love"
+  else if (quest === 2 && answer === "love") {
+    quest = 3; // optional: move to next quest
+    title.innerText = "Quest 3";
+    text.innerText = "You did it! 🎉"; // or whatever you want
+    answerInput.value = "";
+    feedback.innerText = "Purr-fect! 😻";
+  }
   else {
     feedback.innerText = "Try again 😼";
   }
