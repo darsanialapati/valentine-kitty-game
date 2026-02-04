@@ -2,53 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Kitty Valentine Game 💘</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #fff0f5;
-      padding-top: 50px;
-    }
-
-    .kitty {
-      font-size: 80px;
-      cursor: pointer;
-    }
-
-    .box {
-      margin-top: 40px;
-      padding: 20px;
-      border: 2px dashed #ff69b4;
-      display: inline-block;
-      cursor: pointer;
-    }
-  </style>
+  <title>Kitty Quest 💘</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <h1>💖 Valentine Kitty Game 💖</h1>
-  <p>Click the kitty to start</p>
+  <!-- Kitty character on screen -->
+  <div id="kitty">🐱</div>
 
-  <div class="kitty">🐱</div>
+  <!-- Game box -->
+  <div id="game">
+    <h2 id="questTitle">Quest 1</h2>
+    <p id="questText">🐟 A kitty has 10 fish treats and gets 2 more. How many treats does the kitty have?</p>
 
-  <div class="box" style="display:none;">
-    🎁 Mystery Box
+    <input type="text" id="answer" placeholder="Your answer" />
+    <button onclick="submitAnswer()">Submit</button>
+
+    <p id="feedback"></p>
   </div>
 
-  <script>
-    const kitty = document.querySelector('.kitty');
-    const box = document.querySelector('.box');
+  <!-- Sneaky final box -->
+  <div id="hiddenBox"></div>
 
-    kitty.addEventListener('click', () => {
-      alert("Hi! Solve a fun challenge to open the box 💕");
-      box.style.display = "inline-block";
-    });
-
-    box.addEventListener('click', () => {
-      alert("Sneaky box coming soon 😼");
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
