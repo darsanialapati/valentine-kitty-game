@@ -5,25 +5,43 @@ body {
   overflow: hidden;
 }
 
-/* Treat counter */
+/* Treat Counter */
 #treatCounter {
   position: fixed;
   top: 15px;
   right: 20px;
   font-size: 22px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-/* Centered screens */
+#treatTray {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.fish {
+  font-size: 22px;
+  cursor: grab;
+}
+
+.fish:active {
+  cursor: grabbing;
+}
+
+/* Screens */
 .levelScreen {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,0.9);
   padding: 40px;
   border-radius: 20px;
+  text-align: center;
   width: 70%;
   max-width: 600px;
 }
@@ -37,10 +55,9 @@ button {
   font-size: 18px;
   border-radius: 12px;
   border: none;
-  cursor: pointer;
   background: #ff6fa5;
   color: white;
-  margin-top: 15px;
+  cursor: pointer;
 }
 
 /* Bird */
@@ -48,12 +65,10 @@ button {
   position: absolute;
   width: 80px;
   cursor: pointer;
-  z-index: 500;
 }
 
-/* Kitten game */
+/* Kittens */
 #kittenGame {
-  position: relative;
   width: 100vw;
   height: 100vh;
 }
@@ -64,7 +79,38 @@ button {
   cursor: pointer;
 }
 
-/* Falling hearts */
+/* Kitty */
+#kitty {
+  width: 180px;
+  margin: 20px auto;
+  display: block;
+}
+
+/* Crying */
+#kitty[src*="cry"] {
+  animation: cryShake 1.2s infinite;
+}
+
+@keyframes cryShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+/* Happy */
+#kitty[src*="happy"] {
+  animation: happyBounce 0.8s infinite;
+}
+
+@keyframes happyBounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* Hearts */
 .heart {
   position: fixed;
   top: -10px;
@@ -77,83 +123,4 @@ button {
     transform: translateY(110vh);
     opacity: 0;
   }
-}
-
-/* ====================
-   FINAL KITTY SCENE
-==================== */
-
-#kitty {
-  width: 180px;
-  margin: 20px auto;
-  display: block;
-  position: relative;
-}
-
-/* Crying kitty shake */
-#kitty[src*="cry"] {
-  animation: cryShake 1.2s infinite;
-}
-
-@keyframes cryShake {
-  0%   { transform: translateX(0); }
-  25%  { transform: translateX(-3px); }
-  50%  { transform: translateX(3px); }
-  75%  { transform: translateX(-3px); }
-  100% { transform: translateX(0); }
-}
-
-/* Tears animation */
-#kitty::after {
-  content: "💧 💧";
-  position: absolute;
-  left: 50%;
-  top: 65%;
-  transform: translateX(-50%);
-  font-size: 18px;
-  animation: tears 1.5s infinite;
-}
-
-@keyframes tears {
-  0%   { opacity: 0; transform: translate(-50%, 0); }
-  30%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(-50%, 20px); }
-}
-
-/* Happy kitty bounce */
-#kitty[src*="happy"] {
-  animation: happyBounce 0.8s infinite;
-}
-
-@keyframes happyBounce {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-15px); }
-  100% { transform: translateY(0); }
-}
-
-/* Treats area */
-#treatsArea {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-/* Treats wobble */
-.treat {
-  font-size: 35px;
-  cursor: grab;
-  animation: wobble 1.4s infinite;
-}
-
-.treat:active {
-  cursor: grabbing;
-}
-
-@keyframes wobble {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(-10deg); }
-  50%  { transform: rotate(10deg); }
-  75%  { transform: rotate(-10deg); }
-  100% { transform: rotate(0deg); }
 }
