@@ -78,3 +78,82 @@ button {
     opacity: 0;
   }
 }
+
+/* ====================
+   FINAL KITTY SCENE
+==================== */
+
+#kitty {
+  width: 180px;
+  margin: 20px auto;
+  display: block;
+  position: relative;
+}
+
+/* Crying kitty shake */
+#kitty[src*="cry"] {
+  animation: cryShake 1.2s infinite;
+}
+
+@keyframes cryShake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-3px); }
+  50%  { transform: translateX(3px); }
+  75%  { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+/* Tears animation */
+#kitty::after {
+  content: "💧 💧";
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  animation: tears 1.5s infinite;
+}
+
+@keyframes tears {
+  0%   { opacity: 0; transform: translate(-50%, 0); }
+  30%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, 20px); }
+}
+
+/* Happy kitty bounce */
+#kitty[src*="happy"] {
+  animation: happyBounce 0.8s infinite;
+}
+
+@keyframes happyBounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* Treats area */
+#treatsArea {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Treats wobble */
+.treat {
+  font-size: 35px;
+  cursor: grab;
+  animation: wobble 1.4s infinite;
+}
+
+.treat:active {
+  cursor: grabbing;
+}
+
+@keyframes wobble {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(-10deg); }
+  50%  { transform: rotate(10deg); }
+  75%  { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
