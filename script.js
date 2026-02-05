@@ -127,53 +127,47 @@ function startLevel2() {
   hideAll();
   bird.classList.remove("hidden");
 
-  // Move the bird initially
-  moveBird();
+  // Place bird initially somewhere
+  bird.style.left = Math.random() * (window.innerWidth - 80) + "px";
+  bird.style.top = Math.random() * (window.innerHeight - 80) + "px";
 
-  document.addEventListener("mousemove", chaseBird);
+  document.addEventListener("mousemove", moveBirdAway);
 
   bird.onclick = () => {
     updateTreats(3);
     bird.classList.add("hidden");
-    document.removeEventListener("mousemove", chaseBird);
+    document.removeEventListener("mousemove", moveBirdAway);
     hideAll();
     level3Intro.classList.remove("hidden");
   };
 }
 
-function chaseBird() {
-  const maxX = window.innerWidth - 100;
-  const maxY = window.innerHeight - 100;
+function moveBirdAway(e) {
+  const birdRect = bird.getBoundingClientRect();
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
 
-  const birdX = parseFloat(bird.style.left);
-  const birdY = parseFloat(bird.style.top);
+  const distanceX = mouseX - (birdRect.left + birdRect.width / 2);
+  const distanceY = mouseY - (birdRect.top + birdRect.height / 2);
+  const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
 
-  const cornerThreshold = 100; // area size for right-bottom corner
+  // If cursor is close (<120px), bird jumps away
+  if (distance < 120) {
+    const moveX = (distanceX / distance) * 150;
+    const moveY = (distanceY / distance) * 150;
 
-  // If bird is in bottom-right corner, don't move it
-  if (birdX > maxX - cornerThreshold && birdY > maxY - cornerThreshold) {
-    return;
+    let newLeft = birdRect.left - moveX;
+    let newTop = birdRect.top - moveY;
+
+    // Keep bird inside window
+    newLeft = Math.max(0, Math.min(window.innerWidth - birdRect.width, newLeft));
+    newTop = Math.max(0, Math.min(window.innerHeight - birdRect.height, newTop));
+
+    bird.style.left = newLeft + "px";
+    bird.style.top = newTop + "px";
   }
-
-  // Otherwise, move bird randomly
-  moveBird();
 }
 
-function moveBird() {
-  const maxX = window.innerWidth - 100;
-  const maxY = window.innerHeight - 100;
-
-  bird.style.left = Math.random() * maxX + "px";
-  bird.style.top = Math.random() * maxY + "px";
-}
-
-function moveBird() {
-  const maxX = window.innerWidth - 100;
-  const maxY = window.innerHeight - 100;
-
-  bird.style.left = Math.random() * maxX + "px";
-  bird.style.top = Math.random() * maxY + "px";
-}
 
 /* --------------------
    LEVEL 3: FIND KITTENS
