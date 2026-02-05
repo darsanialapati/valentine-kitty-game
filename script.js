@@ -204,8 +204,48 @@ function startLevel3() {
    FINAL SCENE
 -------------------- */
 function feedKitty() {
-  letter.classList.remove("hidden");
+  letter.classList.add("hidden");
+  document.getElementById("treatsArea").innerHTML = "";
+
+  const treatsArea = document.getElementById("treatsArea");
+  const kitty = document.getElementById("kitty");
+
+  let treatsFed = 0;
+
+  // Create draggable treats 🐟
+  for (let i = 0; i < treats; i++) {
+    const treat = document.createElement("div");
+    treat.className = "treat";
+    treat.innerText = "🐟";
+    treat.draggable = true;
+
+    treat.ondragstart = (e) => {
+      e.dataTransfer.setData("text/plain", "treat");
+      e.target.classList.add("dragging");
+    };
+
+    treat.ondragend = (e) => {
+      e.target.remove();
+      treatsFed++;
+
+      if (treatsFed === treats) {
+        // Kitty becomes happy 😻
+        kitty.src = "kitty-happy.gif";
+
+        setTimeout(() => {
+          letter.classList.remove("hidden");
+        }, 1200);
+      }
+    };
+
+    treatsArea.appendChild(treat);
+  }
+
+  // Kitty drop zone
+  kitty.ondragover = (e) => e.preventDefault();
+  kitty.ondrop = (e) => e.preventDefault();
 }
+
 
 /* --------------------
    FALLING HEARTS
