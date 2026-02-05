@@ -1,260 +1,156 @@
-/* ---------------------------
-   GLOBAL STYLES
----------------------------- */
-
-/* Kitty cursor everywhere */
+/* Reset */
 * {
-  cursor: url("Paw.png") 16 16, auto;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", "Comic Sans MS", cursive;
 }
 
+/* Body */
 body {
-  background: #ffe5ec;
-  font-family: "Arial", sans-serif;
   height: 100vh;
-  margin: 0;
+  width: 100vw;
+  background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
   overflow: hidden;
   position: relative;
 }
 
-/* ---------------------------
-   FALLING HEARTS
----------------------------- */
-
-.heart {
-  position: fixed;
-  top: -20px;
-  animation-name: fall;
-  animation-timing-function: linear;
-  z-index: 1;
-  pointer-events: none;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
-}
-
-/* ---------------------------
-   TREAT COUNTER
----------------------------- */
-
-#treatCounter {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #fff0f6;
-  padding: 10px 16px;
-  border-radius: 20px;
-  font-size: 18px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-  z-index: 200;
-}
-
-/* ---------------------------
-   INTRO / RULES PAGE
----------------------------- */
-
-#intro {
+/* Center ALL main screens */
+#intro,
+.levelScreen,
+#game,
+#kittenGame,
+#letter {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 90%;
+  max-width: 600px;
 
-  background: rgba(255, 255, 255, 0.92);
-  padding: 40px;
   text-align: center;
-  z-index: 150;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
-#intro h1 {
-  font-size: 42px;
-  color: #ff66aa;
+/* Headings */
+h1, h2, h3 {
+  margin-bottom: 15px;
+  color: #ff4d88;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #444;
+}
+
+/* Lists */
+ol {
+  list-style-position: inside;
   margin-bottom: 15px;
 }
 
-#intro p {
-  font-size: 18px;
-  max-width: 650px;
-  line-height: 1.7;
-  color: #ff3399;
+li {
+  margin-bottom: 8px;
 }
 
-#intro h3 {
-  margin-top: 25px;
-  color: #ff66aa;
-}
-
-#intro ol {
-  margin: 10px 0 20px;
-  padding-left: 0;
-  list-style-position: inside;
-  font-size: 17px;
-  color: #ff3399;
-}
-
-#intro button {
-  margin-top: 20px;
-}
-
-/* ---------------------------
-   LEVEL INTRO SCREENS
----------------------------- */
-
-.levelIntro {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(255, 255, 255, 0.92);
-  text-align: center;
-  padding: 40px;
-  z-index: 120;
-}
-
-.levelIntro h1 {
-  font-size: 42px;
-  color: #ff66aa;
-  margin-bottom: 20px;
-}
-
-.levelIntro p {
-  font-size: 20px;
-  max-width: 650px;
-  line-height: 1.7;
-  margin-bottom: 30px;
-  color: #ff3399;
-}
-
-/* ---------------------------
-   BUTTONS (GLOBAL)
----------------------------- */
-
+/* Buttons */
 button {
-  font-size: 20px;
-  padding: 12px 28px;
-  background: #ff66aa;
+  padding: 12px 25px;
+  font-size: 16px;
+  background: #ff69b4;
   color: white;
   border: none;
   border-radius: 30px;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.3s ease;
+  margin-top: 15px;
+  transition: transform 0.2s, background 0.2s;
 }
 
 button:hover {
-  background: #ff3399;
-  transform: scale(1.08);
+  background: #ff4d88;
+  transform: scale(1.05);
 }
 
-/* ---------------------------
-   LEVEL 1: RIDDLES
----------------------------- */
-
-#game {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(255, 255, 255, 0.9);
+/* Input box */
+input {
+  padding: 10px;
+  width: 80%;
+  max-width: 300px;
+  margin-top: 10px;
+  border-radius: 20px;
+  border: 2px solid #ffb6c1;
   text-align: center;
-  z-index: 100;
+  font-size: 16px;
 }
 
-#questTitle {
-  font-size: 36px;
-  color: #ff66aa;
-  margin-bottom: 10px;
+/* Treat counter */
+#treatCounter {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-#questText {
-  font-size: 22px;
-  max-width: 600px;
-  margin-bottom: 25px;
-  color: #ff3399;
-}
-
-#answer {
-  font-size: 18px;
-  padding: 12px;
-  width: 260px;
-  border-radius: 15px;
-  border: 1px solid #ccc;
-  text-align: center;
-}
-
-#feedback {
-  margin-top: 15px;
-  font-size: 18px;
-}
-
-/* ---------------------------
-   LEVEL 2: SNEAKY BIRD
----------------------------- */
-
+/* Sneaky bird (Level 2) */
 #hiddenBox {
   position: absolute;
   width: 80px;
   height: 80px;
-  z-index: 110;
-}
-
-/* ---------------------------
-   LEVEL 3: HIDDEN KITTENS
----------------------------- */
-
-#kittenGame {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  z-index: 90;
-}
-
-#kittenGame img {
-  position: absolute;
-  width: 50px;
+  background: url("bird.png") no-repeat center/contain;
   cursor: pointer;
 }
 
-/* ---------------------------
-   FINAL SCENE
----------------------------- */
-
-#finalScene {
+/* Hidden kittens (Level 3) */
+.kitten {
   position: absolute;
-  inset: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-  background: rgba(255, 255, 255, 0.92);
-  z-index: 130;
+  width: 60px;
+  height: 60px;
+  background: url("kitten.png") no-repeat center/contain;
+  cursor: pointer;
 }
 
-#bigKitten {
+/* Big cat ending */
+#bigCat {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 120px;
-  margin-bottom: 20px;
 }
 
+/* Final letter */
 #letter {
-  margin-top: 25px;
   font-size: 20px;
-  max-width: 600px;
-  color: #ff3399;
+  line-height: 1.6;
+}
+
+/* 💖 Falling hearts animation */
+.heart {
+  position: absolute;
+  top: -50px;
+  font-size: 20px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+
+/* Make hearts appear ACROSS the screen */
+@keyframes fall {
+  0% {
+    transform: translateY(-50px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
 }
