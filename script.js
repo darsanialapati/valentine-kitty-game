@@ -78,15 +78,15 @@ function startLevel1() {
 function submitAnswer() {
   const answer = answerInput.value.trim().toLowerCase();
 
-  if (quest === 1 && answer === "hrishi") {
+  if (quest === 1 && answer === "Hrishi") {
     quest = 2;
     updateTreats(2);
     showLevelIntro("Level 2: Sneaky Bird!", "A bird appears… can you catch it?", startLevel2);
-  } else if (quest === 2 && answer === "hrishukesh") {
+  } else if (quest === 2 && answer === "Hrishukesh") {
     quest = 3;
     updateTreats(2);
     showLevelIntro("Level 3: Hidden Kittens!", "Click all 10 hidden kittens!", startLevel3);
-  } else if (quest === 3 && answer === "me") {
+  } else if (quest === 3 && answer === "Me") {
     quest = 4;
     updateTreats(2);
     showLevelIntro("Level 2: Sneaky Bird!", "A bird appears… can you catch it?", startLevel2);
