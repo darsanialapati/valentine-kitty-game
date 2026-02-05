@@ -1,92 +1,8 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", "Comic Sans MS", cursive;
-}
-
-/* Body */
 body {
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
+  margin: 0;
+  font-family: "Comic Sans MS", cursive;
+  background: pink;
   overflow: hidden;
-  position: relative;
-}
-
-/* Center ALL main screens */
-#intro,
-.levelScreen,
-#game,
-#kittenGame,
-#letter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 90%;
-  max-width: 600px;
-
-  text-align: center;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-/* Headings */
-h1, h2, h3 {
-  margin-bottom: 15px;
-  color: #ff4d88;
-}
-
-/* Paragraphs */
-p {
-  margin-bottom: 12px;
-  font-size: 18px;
-  color: #444;
-}
-
-/* Lists */
-ol {
-  list-style-position: inside;
-  margin-bottom: 15px;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
-/* Buttons */
-button {
-  padding: 12px 25px;
-  font-size: 16px;
-  background: #ff69b4;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: transform 0.2s, background 0.2s;
-}
-
-button:hover {
-  background: #ff4d88;
-  transform: scale(1.05);
-}
-
-/* Input box */
-input {
-  padding: 10px;
-  width: 80%;
-  max-width: 300px;
-  margin-top: 10px;
-  border-radius: 20px;
-  border: 2px solid #ffb6c1;
-  text-align: center;
-  font-size: 16px;
 }
 
 /* Treat counter */
@@ -94,62 +10,70 @@ input {
   position: fixed;
   top: 15px;
   right: 20px;
-  background: white;
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  font-size: 22px;
+  z-index: 1000;
 }
 
-/* Sneaky bird (Level 2) */
-#hiddenBox {
+/* Centered screens */
+.levelScreen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 20px;
+  width: 70%;
+  max-width: 600px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: #ff6fa5;
+  color: white;
+  margin-top: 15px;
+}
+
+/* Bird */
+#bird {
   position: absolute;
   width: 80px;
-  height: 80px;
-  background: url("bird.png") no-repeat center/contain;
   cursor: pointer;
+  z-index: 500;
 }
 
-/* Hidden kittens (Level 3) */
+/* Kitten game */
+#kittenGame {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
 .kitten {
   position: absolute;
-  width: 60px;
-  height: 60px;
-  background: url("kitten.png") no-repeat center/contain;
+  font-size: 40px;
   cursor: pointer;
 }
 
-/* Big cat ending */
-#bigCat {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 120px;
-}
-
-/* Final letter */
-#letter {
-  font-size: 20px;
-  line-height: 1.6;
-}
-
-/* 💖 Falling hearts animation */
+/* Falling hearts */
 .heart {
-  position: absolute;
-  top: -50px;
-  font-size: 20px;
-  animation: fall linear infinite;
-  opacity: 0.8;
+  position: fixed;
+  top: -10px;
+  animation: fall linear forwards;
+  pointer-events: none;
 }
 
-/* Make hearts appear ACROSS the screen */
 @keyframes fall {
-  0% {
-    transform: translateY(-50px);
-    opacity: 1;
-  }
-  100% {
+  to {
     transform: translateY(110vh);
     opacity: 0;
   }
