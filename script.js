@@ -93,11 +93,18 @@ function loadQuest() {
 }
 
 function submitAnswer() {
-  const answer = answerInput.value.trim().toLowerCase();
+  if (!quests[quest]) return;
 
-  if (answer === quests[quest].answer) {
+  const answer = answerInput.value.trim().toLowerCase();
+  const expected = quests[quest].answer.toLowerCase();
+
+  console.log("Typed:", answer);
+  console.log("Expected:", expected);
+
+  if (answer === expected) {
     updateTreats(2);
     feedback.innerText = "Purr-fect! 🐾";
+
     quest++;
 
     if (quest < quests.length) {
@@ -112,6 +119,7 @@ function submitAnswer() {
     feedback.innerText = "Try again 😼";
   }
 }
+
 
 /* --------------------
    LEVEL 2: BIRD CHASE
