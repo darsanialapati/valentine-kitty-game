@@ -1,76 +1,93 @@
-let quest = 1;
+/* --------------------
+   GLOBAL STATE
+-------------------- */
 let treats = 0;
+let quest = 0;
+let kittensFound = 0;
 
-// Elements
+/* --------------------
+   QUEST DATA (LEVEL 1)
+-------------------- */
+const quests = [
+  {
+    title: "Quest 1",
+    text: "What’s really the cutest thing here? 😼",
+    answer: "Hrishi"
+  },
+  {
+    title: "Quest 2",
+    text: "I’m soft, small, and jump when happy. What am I?",
+    answer: "Hrishukesh"
+  },
+  {
+    title: "Quest 3",
+    text: "I love naps, cuddles, and snacks. Who could I be?",
+    answer: "Me"
+  }
+];
+
+/* --------------------
+   ELEMENTS
+-------------------- */
+const treatCounter = document.getElementById("treatCounter");
 const intro = document.getElementById("intro");
-const startBtn = document.getElementById("startBtn");
+const level1Intro = document.getElementById("level1Intro");
+const level2Intro = document.getElementById("level2Intro");
+const level3Intro = document.getElementById("level3Intro");
 
-const levelIntro = document.getElementById("levelIntro");
-const levelName = document.getElementById("levelName");
-const levelDescription = document.getElementById("levelDescription");
-const levelStartBtn = document.getElementById("levelStartBtn");
-
-const gameBox = document.getElementById("game");
-const title = document.getElementById("questTitle");
-const text = document.getElementById("questText");
+const game = document.getElementById("game");
+const questTitle = document.getElementById("questTitle");
+const questText = document.getElementById("questText");
 const answerInput = document.getElementById("answer");
 const feedback = document.getElementById("feedback");
 
-const hiddenBox = document.getElementById("hiddenBox");
+const bird = document.getElementById("bird");
 const kittenGame = document.getElementById("kittenGame");
-
-const treatCounter = document.getElementById("treatCounter");
-
 const finalScene = document.getElementById("finalScene");
-const bigKitten = document.getElementById("bigKitten");
-const feedBtn = document.getElementById("feedBtn");
 const letter = document.getElementById("letter");
 
-// --- Falling Hearts ---
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.style.left = Math.random() * window.innerWidth + "px";
-  heart.style.fontSize = (10 + Math.random() * 20) + "px";
-  heart.style.animationDuration = (3 + Math.random() * 5) + "s";
-  heart.innerText = "💖";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 7000);
-}
-setInterval(createHeart, 500);
-
-// --- Utility ---
-function updateTreats(points) {
-  treats += points;
+/* --------------------
+   HELPERS
+-------------------- */
+function updateTreats(num) {
+  treats += num;
   treatCounter.innerText = `🐾 Treats: ${treats}`;
 }
 
-// --- Show Level Intro ---
-function showLevelIntro(name, description, callback) {
-  levelName.innerText = name;
-  levelDescription.innerText = description;
-  levelIntro.style.display = "block";
-  gameBox.style.display = "none";
-  hiddenBox.style.display = "none";
-  kittenGame.style.display = "none";
-
-  levelStartBtn.onclick = () => {
-    levelIntro.style.display = "none";
-    callback();
-  };
+function hideAll() {
+  [
+    intro,
+    level1Intro,
+    level2Intro,
+    level3Intro,
+    game,
+    bird,
+    kittenGame,
+    finalScene
+  ].forEach(el => el.classList.add("hidden"));
 }
 
-// --- Start the game from Intro button ---
-startBtn.onclick = () => {
-  intro.style.display = "none";
-  showLevelIntro("Level 1: Kitty Riddles!", "Solve 3 silly riddles to earn treats!", startLevel1);
-};
+/* --------------------
+   INTRO → LEVEL 1
+-------------------- */
+function showLevel1Intro() {
+  hideAll();
+  level1Intro.classList.remove("hidden");
+}
 
-// --- Level 1 ---
 function startLevel1() {
-  gameBox.style.display = "block";
-  title.innerText = "Quest 1";
-  text.innerText = "What’s really the cutest thing here?";
+  hideAll();
+  quest = 0;
+  loadQuest();
+}
+
+/* --------------------
+   LEVEL 1: QUESTS
+-------------------- */
+function loadQuest() {
+  game.classList.remove("hidden");
+  questTitle.innerText = quests[quest].title;
+  questText.innerText = quests[quest].text;
   answerInput.value = "";
   feedback.innerText = "";
 }
@@ -78,21 +95,102 @@ function startLevel1() {
 function submitAnswer() {
   const answer = answerInput.value.trim().toLowerCase();
 
-  if (quest === 1 && answer === "Hrishi") {
-    quest = 2;
+  if (answer === quests[quest].answer) {
     updateTreats(2);
-    showLevelIntro("Level 2: Sneaky Bird!", "A bird appears… can you catch it?", startLevel2);
-  } else if (quest === 2 && answer === "Hrishukesh") {
-    quest = 3;
-    updateTreats(2);
-    showLevelIntro("Level 3: Hidden Kittens!", "Click all 10 hidden kittens!", startLevel3);
-  } else if (quest === 3 && answer === "Me") {
-    quest = 4;
-    updateTreats(2);
-    showLevelIntro("Level 2: Sneaky Bird!", "A bird appears… can you catch it?", startLevel2);
+    feedback.innerText = "Purr-fect! 🐾";
+    quest++;
+
+    if (quest < quests.length) {
+      setTimeout(loadQuest, 800);
+    } else {
+      setTimeout(() => {
+        hideAll();
+        level2Intro.classList.remove("hidden");
+      }, 1000);
+    }
   } else {
     feedback.innerText = "Try again 😼";
   }
 }
 
-// --- Level 2 and 3 code remains the same as previously discussed ---
+/* --------------------
+   LEVEL 2: BIRD CHASE
+-------------------- */
+function startLevel2() {
+  hideAll();
+  bird.classList.remove("hidden");
+  moveBird();
+
+  document.addEventListener("mousemove", moveBird);
+
+  bird.onclick = () => {
+    updateTreats(3);
+    bird.classList.add("hidden");
+    document.removeEventListener("mousemove", moveBird);
+    hideAll();
+    level3Intro.classList.remove("hidden");
+  };
+}
+
+function moveBird() {
+  const maxX = window.innerWidth - 100;
+  const maxY = window.innerHeight - 100;
+
+  bird.style.left = Math.random() * maxX + "px";
+  bird.style.top = Math.random() * maxY + "px";
+}
+
+/* --------------------
+   LEVEL 3: FIND KITTENS
+-------------------- */
+function startLevel3() {
+  hideAll();
+  kittenGame.innerHTML = "";
+  kittenGame.classList.remove("hidden");
+  kittensFound = 0;
+
+  for (let i = 0; i < 10; i++) {
+    const kitty = document.createElement("div");
+    kitty.className = "kitten";
+    kitty.innerText = "🐱";
+    kitty.style.left = Math.random() * 90 + "vw";
+    kitty.style.top = Math.random() * 90 + "vh";
+
+    kitty.onclick = () => {
+      kitty.remove();
+      kittensFound++;
+
+      if (kittensFound === 10) {
+        updateTreats(5);
+        hideAll();
+        finalScene.classList.remove("hidden");
+      }
+    };
+
+    kittenGame.appendChild(kitty);
+  }
+}
+
+/* --------------------
+   FINAL SCENE
+-------------------- */
+function feedKitty() {
+  letter.classList.remove("hidden");
+}
+
+/* --------------------
+   FALLING HEARTS
+-------------------- */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 400);
