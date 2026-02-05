@@ -12,17 +12,17 @@ const quests = [
   {
     title: "Quest 1",
     text: "What’s really the cutest thing here? 😼",
-    answer: "Hrishi"
+    answer: "hrishi"
   },
   {
     title: "Quest 2",
     text: "I’m soft, small, and jump when happy. What am I?",
-    answer: "Hrishukesh"
+    answer: "hrishukesh"
   },
   {
     title: "Quest 3",
     text: "I love naps, cuddles, and snacks. Who could I be?",
-    answer: "Me"
+    answer: "me"
   }
 ];
 
