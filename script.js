@@ -120,24 +120,51 @@ function submitAnswer() {
   }
 }
 
-
 /* --------------------
    LEVEL 2: BIRD CHASE
 -------------------- */
 function startLevel2() {
   hideAll();
   bird.classList.remove("hidden");
+
+  // Move the bird initially
   moveBird();
 
-  document.addEventListener("mousemove", moveBird);
+  document.addEventListener("mousemove", chaseBird);
 
   bird.onclick = () => {
     updateTreats(3);
     bird.classList.add("hidden");
-    document.removeEventListener("mousemove", moveBird);
+    document.removeEventListener("mousemove", chaseBird);
     hideAll();
     level3Intro.classList.remove("hidden");
   };
+}
+
+function chaseBird() {
+  const maxX = window.innerWidth - 100;
+  const maxY = window.innerHeight - 100;
+
+  const birdX = parseFloat(bird.style.left);
+  const birdY = parseFloat(bird.style.top);
+
+  const cornerThreshold = 100; // area size for right-bottom corner
+
+  // If bird is in bottom-right corner, don't move it
+  if (birdX > maxX - cornerThreshold && birdY > maxY - cornerThreshold) {
+    return;
+  }
+
+  // Otherwise, move bird randomly
+  moveBird();
+}
+
+function moveBird() {
+  const maxX = window.innerWidth - 100;
+  const maxY = window.innerHeight - 100;
+
+  bird.style.left = Math.random() * maxX + "px";
+  bird.style.top = Math.random() * maxY + "px";
 }
 
 function moveBird() {
