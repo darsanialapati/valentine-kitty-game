@@ -7,17 +7,38 @@
 </head>
 <body>
 
+  <!-- Falling hearts container -->
+  <div id="heartsContainer"></div>
+
   <!-- Treat counter -->
   <div id="treatCounter">🐾 Treats: 0</div>
 
+  <!-- Introduction / Rules page -->
+  <div id="intro">
+    <h1>💖 Welcome to the Valentine Kitty Game! 🐱💌</h1>
+    <p>Are you smart 🧠 and cute 😽 enough to help our hungry kitty?</p>
+    <p>This is not like all the other games you play… it's a little tricky, but we believe in you! 🌸✨</p>
+    
+    <h3>🐾 Rules to play:</h3>
+    <ol>
+      <li>Have a <strong>paw-sitive attitude</strong> 🐾</li>
+      <li>Believe in <strong>love</strong> ❤️</li>
+      <li>Most of all, <strong>have fun!</strong> 😺</li>
+    </ol>
+
+    <p><em>Hint / Note:</em> Keep some <strong>snickers 🍫</strong> nearby in case you need help!</p>
+
+    <button id="startBtn">Let's Start the Adventure! 🐾</button>
+  </div>
+
   <!-- Level Intro Screen -->
-  <div class="levelIntro" id="levelIntro">
+  <div class="levelIntro" id="levelIntro" style="display:none;">
     <h1 id="levelName"></h1>
     <p id="levelDescription"></p>
     <button id="levelStartBtn">Let's Go! 🐾</button>
   </div>
 
-  <!-- Game box -->
+  <!-- Game box (Level 1) -->
   <div id="game" style="display:none;">
     <h2 id="questTitle"></h2>
     <p id="questText"></p>
