@@ -1,42 +1,75 @@
+/* --------------------
+   GLOBAL STATE
+-------------------- */
 let treats = 0;
 let quest = 0;
 let kittensFound = 0;
 
-/* QUESTS */
+/* --------------------
+   QUEST DATA (LEVEL 1)
+-------------------- */
 const quests = [
-  { title: "Quest 1", text: "What’s really the cutest thing here? 😼", answer: "hrishi" },
-  { title: "Quest 2", text: "I’m soft, small, and jump when happy. What am I?", answer: "hrishukesh" },
-  { title: "Quest 3", text: "I love naps, cuddles, and snacks. Who could I be?", answer: "me" }
+  {
+    title: "Quest 1",
+    text: "What’s really the cutest thing here? 😼",
+    answer: "hrishi"
+  },
+  {
+    title: "Quest 2",
+    text: "I’m soft, small, and jump when happy. What am I?",
+    answer: "hrishukesh"
+  },
+  {
+    title: "Quest 3",
+    text: "I love naps, cuddles, and snacks. Who could I be?",
+    answer: "me"
+  }
 ];
 
-/* ELEMENTS */
+/* --------------------
+   ELEMENTS
+-------------------- */
 const treatCounter = document.getElementById("treatCounter");
 const intro = document.getElementById("intro");
 const level1Intro = document.getElementById("level1Intro");
 const level2Intro = document.getElementById("level2Intro");
 const level3Intro = document.getElementById("level3Intro");
+
 const game = document.getElementById("game");
 const questTitle = document.getElementById("questTitle");
 const questText = document.getElementById("questText");
 const answerInput = document.getElementById("answer");
 const feedback = document.getElementById("feedback");
+
 const bird = document.getElementById("bird");
 const kittenGame = document.getElementById("kittenGame");
 const finalScene = document.getElementById("finalScene");
 const letter = document.getElementById("letter");
 
-/* HELPERS */
+/* --------------------
+   HELPERS
+-------------------- */
 function updateTreats(num) {
   treats += num;
-  treatCounter.innerText = `🐟 Treats: ${treats}`;
+  treatCounter.innerText = `🐾 Treats: ${treats}`;
 }
 
 function hideAll() {
-  [intro, level1Intro, level2Intro, level3Intro, game, bird, kittenGame, finalScene]
-    .forEach(el => el.classList.add("hidden"));
+  [
+    intro,
+    level1Intro,
+    level2Intro,
+    level3Intro,
+    game,
+    bird,
+    kittenGame,
+    finalScene
+  ].forEach(el => el.classList.add("hidden"));
 }
 
-/* INTRO → LEVEL 1 */
+/* --------------------
+   INTRO → LEVEL 1
+-------------------- */
 function showLevel1Intro() {
   hideAll();
   level1Intro.classList.remove("hidden");
@@ -48,7 +81,9 @@ function startLevel1() {
   loadQuest();
 }
 
-/* LEVEL 1 */
+/* --------------------
+   LEVEL 1: QUESTS
+-------------------- */
 function loadQuest() {
   game.classList.remove("hidden");
   questTitle.innerText = quests[quest].title;
@@ -58,108 +93,133 @@ function loadQuest() {
 }
 
 function submitAnswer() {
+  if (!quests[quest]) return;
+
   const answer = answerInput.value.trim().toLowerCase();
-  if (answer === quests[quest].answer) {
+  const expected = quests[quest].answer.toLowerCase();
+
+  console.log("Typed:", answer);
+  console.log("Expected:", expected);
+
+  if (answer === expected) {
     updateTreats(2);
     feedback.innerText = "Purr-fect! 🐾";
+
     quest++;
-    quest < quests.length ? setTimeout(loadQuest, 800) :
-      setTimeout(() => { hideAll(); level2Intro.classList.remove("hidden"); }, 1000);
+
+    if (quest < quests.length) {
+      setTimeout(loadQuest, 800);
+    } else {
+      setTimeout(() => {
+        hideAll();
+        level2Intro.classList.remove("hidden");
+      }, 1000);
+    }
   } else {
     feedback.innerText = "Try again 😼";
   }
 }
 
-/* LEVEL 2 */
+/* --------------------
+   LEVEL 2: BIRD CHASE
+-------------------- */
 function startLevel2() {
   hideAll();
   bird.classList.remove("hidden");
-  bird.style.left = "60vw";
-  bird.style.top = "60vh";
+
+  // Place bird initially somewhere
+  bird.style.left = Math.random() * (window.innerWidth - 80) + "px";
+  bird.style.top = Math.random() * (window.innerHeight - 80) + "px";
+
   document.addEventListener("mousemove", moveBirdAway);
 
   bird.onclick = () => {
     updateTreats(3);
-    document.removeEventListener("mousemove", moveBirdAway);
     bird.classList.add("hidden");
+    document.removeEventListener("mousemove", moveBirdAway);
     hideAll();
     level3Intro.classList.remove("hidden");
   };
 }
 
 function moveBirdAway(e) {
-  const rect = bird.getBoundingClientRect();
-  const dx = e.clientX - rect.left;
-  const dy = e.clientY - rect.top;
-  if (Math.hypot(dx, dy) < 120) {
-    bird.style.left = Math.random() * 70 + "vw";
-    bird.style.top = Math.random() * 70 + "vh";
+  const birdRect = bird.getBoundingClientRect();
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+
+  const distanceX = mouseX - (birdRect.left + birdRect.width / 2);
+  const distanceY = mouseY - (birdRect.top + birdRect.height / 2);
+  const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+
+  // If cursor is close (<120px), bird jumps away
+  if (distance < 120) {
+    const moveX = (distanceX / distance) * 150;
+    const moveY = (distanceY / distance) * 150;
+
+    let newLeft = birdRect.left - moveX;
+    let newTop = birdRect.top - moveY;
+
+    // Keep bird inside window
+    newLeft = Math.max(0, Math.min(window.innerWidth - birdRect.width, newLeft));
+    newTop = Math.max(0, Math.min(window.innerHeight - birdRect.height, newTop));
+
+    bird.style.left = newLeft + "px";
+    bird.style.top = newTop + "px";
   }
 }
 
-/* LEVEL 3 */
+
+/* --------------------
+   LEVEL 3: FIND KITTENS
+-------------------- */
 function startLevel3() {
   hideAll();
-  kittenGame.classList.remove("hidden");
   kittenGame.innerHTML = "";
+  kittenGame.classList.remove("hidden");
   kittensFound = 0;
 
   for (let i = 0; i < 10; i++) {
-    const k = document.createElement("div");
-    k.className = "kitten";
-    k.innerText = "🐱";
-    k.style.left = Math.random() * 90 + "vw";
-    k.style.top = Math.random() * 90 + "vh";
-    k.onclick = () => {
-      k.remove();
+    const kitty = document.createElement("div");
+    kitty.className = "kitten";
+    kitty.innerText = "🐱";
+    kitty.style.left = Math.random() * 90 + "vw";
+    kitty.style.top = Math.random() * 90 + "vh";
+
+    kitty.onclick = () => {
+      kitty.remove();
       kittensFound++;
+
       if (kittensFound === 10) {
         updateTreats(5);
         hideAll();
-        startFeeding();
+        finalScene.classList.remove("hidden");
       }
     };
-    kittenGame.appendChild(k);
+
+    kittenGame.appendChild(kitty);
   }
 }
 
-/* ---------- FINAL FEEDING (NEW) ---------- */
-function startFeeding() {
-  finalScene.classList.remove("hidden");
-
-  const kitty = document.getElementById("kitty");
-  const area = document.getElementById("treatsArea");
-  area.innerHTML = "";
-
-  let fed = 0;
-
-  for (let i = 0; i < treats; i++) {
-    const fish = document.createElement("div");
-    fish.className = "treat";
-    fish.innerText = "🐟";
-    fish.draggable = true;
-
-    fish.ondragstart = e => e.dataTransfer.setData("fish", "🐟");
-    area.appendChild(fish);
-  }
-
-  kitty.ondragover = e => e.preventDefault();
-  kitty.ondrop = () => {
-    fed++;
-    area.removeChild(area.lastChild);
-    if (fed === treats) {
-      kitty.innerText = "😻";
-      setTimeout(() => letter.classList.remove("hidden"), 1000);
-    }
-  };
+/* --------------------
+   FINAL SCENE
+-------------------- */
+function feedKitty() {
+  letter.classList.remove("hidden");
 }
 
-/* HEARTS */
-setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = "💖";
-  h.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 6000);
-}, 400);
+/* --------------------
+   FALLING HEARTS
+-------------------- */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 400);
