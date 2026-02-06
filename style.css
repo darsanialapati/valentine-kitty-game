@@ -5,43 +5,23 @@ body {
   overflow: hidden;
 }
 
-/* Treat Counter */
 #treatCounter {
   position: fixed;
   top: 15px;
   right: 20px;
   font-size: 22px;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
-#treatTray {
-  display: flex;
-  gap: 6px;
-  margin-top: 4px;
-}
-
-.fish {
-  font-size: 22px;
-  cursor: grab;
-}
-
-.fish:active {
-  cursor: grabbing;
-}
-
-/* Screens */
 .levelScreen {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
   background: rgba(255,255,255,0.9);
   padding: 40px;
   border-radius: 20px;
-  text-align: center;
   width: 70%;
   max-width: 600px;
 }
@@ -57,17 +37,14 @@ button {
   border: none;
   background: #ff6fa5;
   color: white;
-  cursor: pointer;
 }
 
-/* Bird */
 #bird {
   position: absolute;
   width: 80px;
-  cursor: pointer;
+  z-index: 500;
 }
 
-/* Kittens */
 #kittenGame {
   width: 100vw;
   height: 100vh;
@@ -76,51 +53,18 @@ button {
 .kitten {
   position: absolute;
   font-size: 40px;
-  cursor: pointer;
 }
 
-/* Kitty */
+/* 💖 FINAL LEVEL ADDITIONS */
+
 #kitty {
-  width: 180px;
-  margin: 20px auto;
-  display: block;
+  font-size: 100px;
+  margin: 20px;
+  transition: transform 0.5s;
 }
 
-/* Crying */
-#kitty[src*="cry"] {
-  animation: cryShake 1.2s infinite;
-}
-
-@keyframes cryShake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-3px); }
-  50% { transform: translateX(3px); }
-  75% { transform: translateX(-3px); }
-  100% { transform: translateX(0); }
-}
-
-/* Happy */
-#kitty[src*="happy"] {
-  animation: happyBounce 0.8s infinite;
-}
-
-@keyframes happyBounce {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0); }
-}
-
-/* Hearts */
-.heart {
-  position: fixed;
-  top: -10px;
-  animation: fall linear forwards;
-  pointer-events: none;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
+.fish {
+  font-size: 40px;
+  cursor: grab;
+  position: absolute;
 }
