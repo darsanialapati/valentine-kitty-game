@@ -8,37 +8,40 @@
 <body>
 
   <!-- Treat Counter -->
-  <div id="treatCounter">🐟 Treats: 0</div>
+  <div id="treatCounter">🐾 Treats: 0</div>
 
-  <!-- Falling hearts -->
+  <!-- Falling hearts container -->
   <div id="hearts"></div>
 
-  <!-- INTRO -->
+  <!-- INTRO / RULES -->
   <div id="intro" class="levelScreen">
     <h1>💖 Valentine Kitty Game 🐱💌</h1>
     <p>Are you smart 🧠 and cute 😽 enough to help our hungry kitty?</p>
+    <p>This game is a little tricky… but love makes everything possible ✨</p>
 
     <h3>🐾 Rules to Play</h3>
     <ol>
-      <li>Have a <strong>paw-sitive attitude</strong></li>
-      <li>Believe in <strong>love</strong></li>
-      <li>Have <strong>fun</strong></li>
+      <li>Have a <strong>paw-sitive attitude</strong> 🐾</li>
+      <li>Believe in <strong>love</strong> ❤️</li>
+      <li>Most of all, <strong>have fun</strong> 😺</li>
     </ol>
 
+    <p><em>Hint:</em> Keep some snickers 🍫 nearby just in case!</p>
     <button onclick="showLevel1Intro()">Start the Adventure 🐾</button>
   </div>
 
   <!-- LEVEL 1 INTRO -->
   <div id="level1Intro" class="levelScreen hidden">
     <h1>🐾 Level 1: Kitty Riddles!</h1>
-    <button onclick="startLevel1()">Let's Go!</button>
+    <p>Solve 3 silly riddles to earn treats 🎣</p>
+    <button onclick="startLevel1()">Let's Go! 🐾</button>
   </div>
 
-  <!-- LEVEL 1 -->
+  <!-- LEVEL 1 GAME -->
   <div id="game" class="levelScreen hidden">
     <h2 id="questTitle"></h2>
     <p id="questText"></p>
-    <input type="text" id="answer" />
+    <input type="text" id="answer" placeholder="Your answer" />
     <br />
     <button onclick="submitAnswer()">Submit</button>
     <p id="feedback"></p>
@@ -47,34 +50,30 @@
   <!-- LEVEL 2 INTRO -->
   <div id="level2Intro" class="levelScreen hidden">
     <h1>🐦 Level 2: Catch the Sneaky Bird!</h1>
-    <button onclick="startLevel2()">Let's Go!</button>
+    <p>The bird runs away from your cursor… catch it!</p>
+    <button onclick="startLevel2()">Let's Go! 🐾</button>
   </div>
 
-  <!-- LEVEL 2 -->
+  <!-- LEVEL 2 GAME -->
   <img id="bird" src="bird.png" class="hidden" />
 
   <!-- LEVEL 3 INTRO -->
   <div id="level3Intro" class="levelScreen hidden">
     <h1>🐱 Level 3: Find the Hidden Kittens!</h1>
-    <button onclick="startLevel3()">Let's Go!</button>
+    <p>Find and click all 10 kittens hiding on the page 🐾</p>
+    <button onclick="startLevel3()">Let's Go! 🐾</button>
   </div>
 
-  <!-- LEVEL 3 -->
+  <!-- LEVEL 3 GAME -->
   <div id="kittenGame" class="hidden"></div>
 
-  <!-- FINAL SCENE (UPDATED) -->
+  <!-- FINAL SCENE -->
   <div id="finalScene" class="levelScreen hidden">
     <h1>😿 A Hungry Kitty Awaits…</h1>
-    <p>Drag all the fish to feed the kitty 🐟</p>
-
-    <!-- NEW -->
-    <div id="kitty">😿</div>
-
-    <!-- NEW -->
-    <div id="treatsArea"></div>
-
+    <p>Give all your treats to the kitty 💖</p>
+    <button onclick="feedKitty()">Give Treats 🐾</button>
     <div id="letter" class="hidden">
-      💌 You did it. Love always wins. 💖
+      💌 A love letter appears here…
     </div>
   </div>
 
