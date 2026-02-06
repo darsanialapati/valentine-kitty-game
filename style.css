@@ -3,10 +3,8 @@ body {
   font-family: "Comic Sans MS", cursive;
   background: pink;
   overflow: hidden;
-  text-align: center;
 }
 
-/* Treat counter */
 #treatCounter {
   position: fixed;
   top: 15px;
@@ -15,12 +13,12 @@ body {
   z-index: 1000;
 }
 
-/* Centered screens */
 .levelScreen {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
   background: rgba(255, 255, 255, 0.9);
   padding: 40px;
   border-radius: 20px;
@@ -40,50 +38,56 @@ button {
   cursor: pointer;
   background: #ff6fa5;
   color: white;
-}
-
-.answerRow {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
+  margin-top: 15px;
 }
 
 /* Bird */
 #bird {
   position: absolute;
-  width: 70px;
-  top: 100px;
-  left: 100px;
+  width: 80px;
   cursor: pointer;
-  z-index: 500;
-  transition: transform 0.15s linear;
 }
 
-/* Kitty Game */
+/* Kittens */
 #kittenGame {
+  position: relative;
   width: 100vw;
   height: 100vh;
 }
 
+.kitten {
+  position: absolute;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  top: -10px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* ---------- NEW FINAL SCENE ---------- */
 #kitty {
   font-size: 120px;
-  margin: 30px 0;
+  margin: 20px;
 }
 
-/* Fish */
-.fish {
+#treatsArea {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.treat {
   font-size: 40px;
-  position: absolute;
   cursor: grab;
-}
-
-.fish:nth-child(4) { top: 60%; left: 30%; }
-.fish:nth-child(5) { top: 65%; left: 50%; }
-.fish:nth-child(6) { top: 70%; left: 40%; }
-.fish:nth-child(7) { top: 75%; left: 60%; }
-
-#loveLetter {
-  margin-top: 30px;
-  font-size: 20px;
 }
