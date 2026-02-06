@@ -2,62 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Valentine Kitty Game 💘</title>
+  <title>Kitty Quest 💘</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <!-- Treat Counter -->
-  <div id="treatCounter">🐟 Treats: 0</div>
+  <div id="treatCounter">🐟 Treats: <span id="treats">0</span></div>
 
-  <div id="hearts"></div>
+  <!-- Quest Screen -->
+  <div id="questScreen" class="levelScreen">
+    <h2 id="questTitle">Quest 1</h2>
+    <p id="questText">What’s really the cutest thing here? 😼</p>
 
-  <!-- INTRO -->
-  <div id="intro" class="levelScreen">
-    <h1>💖 Valentine Kitty Game 🐱💌</h1>
-    <p>Are you smart 🧠 and cute 😽 enough to help our hungry kitty?</p>
-    <button onclick="showLevel1Intro()">Start the Adventure 🐾</button>
-  </div>
+    <div class="answerRow">
+      <input id="answer" type="text" />
+      <button onclick="checkAnswer()">Submit</button>
+    </div>
 
-  <div id="level1Intro" class="levelScreen hidden">
-    <h1>🐾 Level 1: Kitty Riddles!</h1>
-    <p>Solve 3 riddles to earn treats 🎣</p>
-    <button onclick="startLevel1()">Let's Go! 🐾</button>
-  </div>
-
-  <div id="game" class="levelScreen hidden">
-    <h2 id="questTitle"></h2>
-    <p id="questText"></p>
-    <input type="text" id="answer" />
-    <button onclick="submitAnswer()">Submit</button>
     <p id="feedback"></p>
   </div>
 
-  <div id="level2Intro" class="levelScreen hidden">
-    <h1>🐦 Level 2: Catch the Sneaky Bird!</h1>
-    <p>The bird runs away from your cursor… catch it!</p>
-    <button onclick="startLevel2()">Let's Go! 🐾</button>
-  </div>
+  <!-- Bird -->
+  <img
+    id="bird"
+    src="https://em-content.zobj.net/source/apple/391/bird_1f426.png"
+    alt="bird"
+  />
 
-  <img id="bird" src="bird.png" class="hidden" />
-
-  <div id="level3Intro" class="levelScreen hidden">
-    <h1>🐱 Level 3: Find the Hidden Kittens!</h1>
-    <button onclick="startLevel3()">Let's Go! 🐾</button>
-  </div>
-
-  <div id="kittenGame" class="hidden"></div>
-
-  <!-- FINAL SCENE (ONLY NEW PART) -->
-  <div id="finalScene" class="levelScreen hidden">
-    <h1>😿 A Hungry Kitty Awaits…</h1>
+  <!-- Kitty Feeding Screen -->
+  <div id="kittenGame" class="hidden">
+    <h2>😿 A Hungry Kitty Awaits...</h2>
     <p>Drag all the fish to feed the kitty 🐟</p>
 
     <div id="kitty">😿</div>
-    <div id="fishContainer"></div>
 
-    <div id="letter" class="hidden">
-      💌 You fed the kitty… and my heart too 💖
+    <div class="fish">🐟</div>
+    <div class="fish">🐟</div>
+    <div class="fish">🐟</div>
+    <div class="fish">🐟</div>
+
+    <div id="loveLetter" class="hidden">
+      <h3>💌</h3>
+      <p>You did it. The kitty is happy because of you 🥺💖</p>
     </div>
   </div>
 
