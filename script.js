@@ -22,6 +22,7 @@ const bird = document.getElementById("bird");
 const kittenGame = document.getElementById("kittenGame");
 const finalScene = document.getElementById("finalScene");
 const letter = document.getElementById("letter");
+
 const kitty = document.getElementById("kitty");
 const fishContainer = document.getElementById("fishContainer");
 
@@ -35,6 +36,7 @@ function hideAll() {
     .forEach(el => el.classList.add("hidden"));
 }
 
+/* LEVEL 1 */
 function showLevel1Intro() {
   hideAll();
   level1Intro.classList.remove("hidden");
@@ -56,20 +58,36 @@ function loadQuest() {
 
 function submitAnswer() {
   const answer = answerInput.value.trim().toLowerCase();
-  if (answer === quests[quest].answer) {
+  const expected = quests[quest].answer;
+
+  if (answer === expected) {
     updateTreats(2);
+    feedback.innerText = "Purr-fect! 🐾";
     quest++;
-    quest < quests.length ? setTimeout(loadQuest, 600) :
-      (hideAll(), level2Intro.classList.remove("hidden"));
-  } else feedback.innerText = "Try again 😼";
+
+    if (quest < quests.length) {
+      setTimeout(loadQuest, 800);
+    } else {
+      setTimeout(() => {
+        hideAll();
+        level2Intro.classList.remove("hidden");
+      }, 1000);
+    }
+  } else {
+    feedback.innerText = "Try again 😼";
+  }
 }
 
-/* LEVEL 2 */
+/* LEVEL 2 – ORIGINAL DISTANCE-BASED LOGIC */
 function startLevel2() {
   hideAll();
   bird.classList.remove("hidden");
 
+  bird.style.left = "70vw";
+  bird.style.top = "70vh";
+
   document.addEventListener("mousemove", moveBirdAway);
+
   bird.onclick = () => {
     updateTreats(3);
     bird.classList.add("hidden");
@@ -80,8 +98,23 @@ function startLevel2() {
 }
 
 function moveBirdAway(e) {
-  bird.style.left = Math.random() * (window.innerWidth - 80) + "px";
-  bird.style.top = Math.random() * (window.innerHeight - 80) + "px";
+  const birdRect = bird.getBoundingClientRect();
+  const dx = e.clientX - (birdRect.left + birdRect.width / 2);
+  const dy = e.clientY - (birdRect.top + birdRect.height / 2);
+  const dist = Math.sqrt(dx * dx + dy * dy);
+
+  if (dist < 120) {
+    let newLeft = birdRect.left - dx;
+    let newTop = birdRect.top - dy;
+
+    newLeft = Math.min(window.innerWidth - birdRect.width,
+              Math.max(0, newLeft));
+    newTop = Math.min(window.innerHeight - birdRect.height,
+             Math.max(0, newTop));
+
+    bird.style.left = newLeft + "px";
+    bird.style.top = newTop + "px";
+  }
 }
 
 /* LEVEL 3 */
@@ -92,13 +125,13 @@ function startLevel3() {
   kittensFound = 0;
 
   for (let i = 0; i < 10; i++) {
-    const kitty = document.createElement("div");
-    kitty.className = "kitten";
-    kitty.innerText = "🐱";
-    kitty.style.left = Math.random() * 90 + "vw";
-    kitty.style.top = Math.random() * 90 + "vh";
-    kitty.onclick = () => {
-      kitty.remove();
+    const k = document.createElement("div");
+    k.className = "kitten";
+    k.innerText = "🐱";
+    k.style.left = Math.random() * 90 + "vw";
+    k.style.top = Math.random() * 90 + "vh";
+    k.onclick = () => {
+      k.remove();
       kittensFound++;
       if (kittensFound === 10) {
         updateTreats(5);
@@ -106,11 +139,11 @@ function startLevel3() {
         startFinalScene();
       }
     };
-    kittenGame.appendChild(kitty);
+    kittenGame.appendChild(k);
   }
 }
 
-/* FINAL FEEDING */
+/* FINAL FEEDING (NEW ONLY) */
 function startFinalScene() {
   finalScene.classList.remove("hidden");
   spawnFish();
@@ -157,7 +190,7 @@ function enableDrag(fish) {
   };
 }
 
-/* FALLING HEARTS */
+/* HEARTS */
 setInterval(() => {
   const h = document.createElement("div");
   h.className = "heart";
