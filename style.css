@@ -5,6 +5,7 @@ body {
   overflow: hidden;
 }
 
+/* Treat counter */
 #treatCounter {
   position: fixed;
   top: 15px;
@@ -13,6 +14,7 @@ body {
   z-index: 1000;
 }
 
+/* Centered screens */
 .levelScreen {
   position: absolute;
   top: 50%;
@@ -46,9 +48,10 @@ button {
   position: absolute;
   width: 80px;
   cursor: pointer;
+  z-index: 500;
 }
 
-/* Kittens */
+/* Kitten game */
 #kittenGame {
   position: relative;
   width: 100vw;
@@ -61,11 +64,12 @@ button {
   cursor: pointer;
 }
 
-/* Hearts */
+/* Falling hearts */
 .heart {
   position: fixed;
   top: -10px;
   animation: fall linear forwards;
+  pointer-events: none;
 }
 
 @keyframes fall {
@@ -73,21 +77,4 @@ button {
     transform: translateY(110vh);
     opacity: 0;
   }
-}
-
-/* ---------- NEW FINAL SCENE ---------- */
-#kitty {
-  font-size: 120px;
-  margin: 20px;
-}
-
-#treatsArea {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.treat {
-  font-size: 40px;
-  cursor: grab;
 }
