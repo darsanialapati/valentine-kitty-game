@@ -206,7 +206,10 @@ function startLevel3() {
    FINAL SCENE
 -------------------- */
 function feedKitty() {
-  // Remove all the fishes
+  // Reset treats to zero
+  treats = 0;
+
+  // Update the treat counter to remove all fishes
   treatCounter.innerText = "🐾 Treats:";
 
   // Show the love letter
