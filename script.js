@@ -45,7 +45,10 @@ const bird = document.getElementById("bird");
 const kittenGame = document.getElementById("kittenGame");
 const finalScene = document.getElementById("finalScene");
 const letter = document.getElementById("letter");
-
+const catImg = document.getElementById("catImg");
+const feedBtn = document.getElementById("feedBtn");
+const openLetterBtn = document.getElementById("openLetterBtn");
+const letterScene = document.getElementById("letterScene");
 /* --------------------
    HELPERS
 -------------------- */
@@ -205,15 +208,69 @@ function startLevel3() {
 /* --------------------
    FINAL SCENE
 -------------------- */
-function feedKitty() {
-  // Reset treats to zero
-  treats = 0;
+feedBtn.addEventListener("click", feedKitty);
 
-  // Update the treat counter to remove all fishes
+function feedKitty() {
+  feedBtn.disabled = true;
+
+  let fishCount = treats;
+  let eaten = 0;
+
+  function sendFish() {
+    if (eaten >= fishCount) {
+      finishFeeding();
+      return;
+    }
+
+    const fish = document.createElement("div");
+    fish.innerText = "🐟";
+    fish.style.position = "absolute";
+    fish.style.fontSize = "24px";
+    fish.style.left = Math.random() * window.innerWidth + "px";
+    fish.style.top = "-40px";
+    document.body.appendChild(fish);
+
+    const catRect = catImg.getBoundingClientRect();
+    const targetX = catRect.left + catRect.width / 2;
+    const targetY = catRect.top + catRect.height / 2;
+
+    fish.animate(
+      [
+        { transform: "translate(0,0)" },
+        { transform: `translate(${targetX}px, ${targetY}px)` }
+      ],
+      {
+        duration: 800,
+        easing: "ease-in-out"
+      }
+    );
+
+    setTimeout(() => {
+      fish.remove();
+      eaten++;
+      sendFish();
+    }, 900);
+  }
+
+  sendFish();
+}
+
+function finishFeeding() {
+  treats = 0;
   treatCounter.innerText = "🐾 Treats:";
 
-  // Show the love letter
-  letter.classList.remove("hidden");
+  // Switch to happy cat
+  catImg.src = "cat-happy.gif";
+
+  // Show open letter button after small delay
+  setTimeout(() => {
+    openLetterBtn.classList.remove("hidden");
+  }, 1000);
+}
+
+function openLetter() {
+  hideAll();
+  letterScene.classList.remove("hidden");
 }
 
 /* --------------------
