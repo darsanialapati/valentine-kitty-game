@@ -67,10 +67,40 @@
   <!-- LEVEL 3 GAME -->
   <div id="kittenGame" class="hidden"></div>
 
+
   <!-- FINAL SCENE -->
   <div id="finalScene" class="levelScreen hidden">
     <h1>😿 A Hungry Kitty Awaits…</h1>
     <p>Give all your treats to the kitty 💖</p>
+
+    <img 
+      id="catImg" 
+      src="cat-crying.gif" 
+      alt="Crying Cat"
+      style="width:200px; margin:20px auto; display:block;"
+    />
+
+    <button id="feedBtn">Give Treats 🐾</button>
+
+    <div id="openLetterBtn" class="hidden">
+      <button onclick="openLetter()">Open Your Surprise 💌</button>
+    </div>
+  </div>
+
+
+  <!-- LETTER SCENE -->
+  <div id="letterScene" class="levelScreen hidden">
+    <h1>💌 A Special Surprise</h1>
+    <p>
+      My dearest Valentine 💖<br><br>
+      You solved every riddle,<br>
+      chased the sneaky bird,<br>
+      found all the kittens…<br><br>
+      and most importantly —<br>
+      you fed a hungry heart 🐾<br><br>
+      Happy Valentine’s Day ❤️
+    </p>
+  </div>
 
     <!-- Cat Animation -->
     <img id="catImg" src="assets/cat-crying.gif" alt="Crying cat" style="width:200px; margin: 20px auto; display: block;" />
