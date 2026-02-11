@@ -232,3 +232,67 @@ function createHeart() {
 }
 
 setInterval(createHeart, 400);
+
+document.getElementById("feedBtn").addEventListener("click", playFeedAnimation);
+
+function playFeedAnimation() {
+  // Disable button so it can't be clicked again
+  document.getElementById("feedBtn").disabled = true;
+
+  const totalFish = treats;
+  let eaten = 0;
+  const catImg = document.getElementById("catImg");
+
+  function animateFish(index) {
+    // Create fish element on screen
+    const fish = document.createElement("div");
+    fish.innerText = "🐟";
+    fish.style.position = "absolute";
+
+    const startX = Math.random() * window.innerWidth;
+    const startY = -50;
+    fish.style.left = startX + "px";
+    fish.style.top = startY + "px";
+    fish.style.fontSize = "24px";
+    document.body.appendChild(fish);
+
+    // Target is cat image
+    const catRect = catImg.getBoundingClientRect();
+    const endX = catRect.left + catRect.width / 2;
+    const endY = catRect.top + catRect.height / 2;
+
+    // Animate fish moving to the cat
+    fish.animate(
+      [
+        { transform: `translate(0, 0)` },
+        { transform: `translate(${endX - startX}px, ${endY - startY}px)` }
+      ],
+      {
+        duration: 800,
+        easing: "ease-in-out"
+      }
+    );
+
+    setTimeout(() => {
+      fish.remove();
+      eaten++;
+
+      // After all fish eaten
+      if (eaten === totalFish) {
+        // Change to happy cat
+        catImg.src = "assets/cat-happy.gif";
+
+        // Redirect to new letter page after short delay
+        setTimeout(() => {
+          window.location.href = "letter.html";
+        }, 1500);
+      } else {
+        // Animate next fish
+        animateFish(eaten);
+      }
+    }, 900);
+  }
+
+  animateFish(0);
+}
+
