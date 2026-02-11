@@ -71,11 +71,16 @@
   <div id="finalScene" class="levelScreen hidden">
     <h1>😿 A Hungry Kitty Awaits…</h1>
     <p>Give all your treats to the kitty 💖</p>
-    <button onclick="feedKitty()">Give Treats 🐾</button>
-    <div id="letter" class="hidden">
-      💌 A love letter appears here…
-    </div>
+
+    <!-- Cat Animation -->
+    <img id="catImg" src="assets/cat-crying.gif" alt="Crying cat" style="width:200px; margin: 20px auto; display: block;" />
+
+    <button id="feedBtn">Give Treats 🐾</button>
+
+    <!-- Treat Delivery Area (hidden) -->
+    <div id="treatDelivery"></div>
   </div>
+
 
   <script src="script.js"></script>
 </body>
