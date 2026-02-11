@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  cursor: url('Paw.png') 16 16, auto;
+  cursor: url('Paw_cursor.png'), auto;
   font-family: "Comic Sans MS", cursive;
   background: pink;
   overflow: hidden;
