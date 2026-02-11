@@ -51,7 +51,9 @@ const letter = document.getElementById("letter");
 -------------------- */
 function updateTreats(num) {
   treats += num;
-  treatCounter.innerText = `🐾 Treats: ${treats}`;
+  // Instead of a number, show one 🐟 for each treat
+  const fishes = "🐟".repeat(treats);
+  treatCounter.innerText = `🐾 Treats:\n${fishes}`;
 }
 
 function hideAll() {
