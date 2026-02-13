@@ -234,28 +234,38 @@ function feedKitty() {
     fish.style.left = Math.random() * window.innerWidth + "px";
     fish.style.top = "-40px";
     document.body.appendChild(fish);
-
+     
     const catRect = catImg.getBoundingClientRect();
     const targetX = catRect.left + catRect.width / 2;
     const targetY = catRect.top + catRect.height / 2;
 
+    // IMPORTANT: get fish start position AFTER it's on the page
+    const fishRect = fish.getBoundingClientRect();
+    const startX = fishRect.left + fishRect.width / 2;
+    const startY = fishRect.top + fishRect.height / 2;
+
+    // Move by the delta (so it lands ON the cat)
+    const dx = targetX - startX;
+    const dy = targetY - startY;
+   
     fish.animate(
       [
-        { transform: "translate(0,0)" },
-        { transform: `translate(${targetX}px, ${targetY}px)` }
+        { transform: "translate(0, 0)" },
+        { transform: `translate(${dx}px, ${dy}px)` }
       ],
       {
-        duration: 800,
-        easing: "ease-in-out"
+        duration: 450,          // quicker
+        easing: "ease-in-out",
+        fill: "forwards"
       }
     );
-
+   
     setTimeout(() => {
       fish.remove();
       eaten++;
-      sendFish();
-    }, 900);
-  }
+      sendFish();               // next fish immediately after
+    }, 500);
+
 
   sendFish();
 }
