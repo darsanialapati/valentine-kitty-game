@@ -187,7 +187,7 @@ function startLevel3() {
   for (let i = 0; i < 10; i++) {
     const kitty = document.createElement("div");
     kitty.className = "kitten";
-    kitty.style.backgroundImage = "url('face.png')";
+    kitty.style.backgroundImage = "url('kitty_face.png')";
     kitty.style.backgroundSize = "contain";
     kitty.style.backgroundRepeat = "no-repeat";
     kitty.style.width = "32px";
