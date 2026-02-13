@@ -260,13 +260,14 @@ function finishFeeding() {
   treats = 0;
   treatCounter.innerText = "🐾 Treats:";
 
-  // Switch to happy cat
-  catImg.src = "cat-happy.gif";
+  // Change cat gif after feeding
+  catImg.src = "cat-happy.gif"; // <-- use your desired gif here
 
-  // Show open letter button after small delay
-  setTimeout(() => {
-    openLetterBtn.classList.remove("hidden");
-  }, 1000);
+  // Hide the feed button
+  feedBtn.style.display = "none";
+
+  // Show open letter button
+  openLetterBtn.classList.remove("hidden");
 }
 
 function openLetter() {
