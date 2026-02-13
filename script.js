@@ -187,7 +187,11 @@ function startLevel3() {
   for (let i = 0; i < 10; i++) {
     const kitty = document.createElement("div");
     kitty.className = "kitten";
-    kitty.innerText = "🐱";
+    kitty.style.backgroundImage = "url('green_imresizer.png')";
+    kitty.style.backgroundSize = "contain";
+    kitty.style.backgroundRepeat = "no-repeat";
+    kitty.style.width = "32px";
+    kitty.style.height = "32px";
     kitty.style.left = Math.random() * 90 + "vw";
     kitty.style.top = Math.random() * 90 + "vh";
 
