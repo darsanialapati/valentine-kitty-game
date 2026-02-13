@@ -261,7 +261,7 @@ function finishFeeding() {
   treatCounter.innerText = "🐾 Treats:";
 
   // Change cat gif after feeding
-  catImg.src = "cat-happy.gif"; // <-- use your desired gif here
+  catImg.src = "happy.gif"; // <-- use your desired gif here
 
   // Hide the feed button
   feedBtn.style.display = "none";
