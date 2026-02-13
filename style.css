@@ -6,6 +6,16 @@ body {
   overflow: hidden;
 }
 
+/* ---- GLOBAL CURSOR (NORMAL STATE) ---- */
+html, body {
+  cursor: url("Paw_cursor.png") 8 8, auto;
+}
+
+/* Force cursor everywhere */
+* {
+  cursor: url("Paw_cursor.png") 8 8, auto;
+}
+
 /* Treat counter */
 #treatCounter {
   position: fixed;
@@ -109,3 +119,15 @@ button {
     opacity: 0;
   }
 }
+
+/* ---- CLICKABLE CURSOR (HOVER / CLICK STATE) ---- */
+button,
+a,
+.kitten,
+#bird,
+#feedBtn,
+#openLetterBtn button {
+  cursor: url("Paw_cursor.png") 8 8, pointer;
+}
+
+
