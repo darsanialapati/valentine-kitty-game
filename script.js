@@ -168,7 +168,7 @@ window.startLevel3 = function () {
   for (let i = 0; i < 10; i++) {
     const kitty = document.createElement("div");
     kitty.className = "kitten";
-    kitty.innerText = "💣";
+    kitty.innerText = "🖤";
     kitty.style.left = Math.random() * 90 + "vw";
     kitty.style.top = Math.random() * 90 + "vh";
 
