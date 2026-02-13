@@ -16,14 +16,12 @@ body {
   white-space: pre-line;
 }
 
-/* --------------------
-   HEARTS LAYER (FIX)
--------------------- */
+/* Hearts overlay layer */
 #hearts {
   position: fixed;
   inset: 0;
   z-index: 2;           /* above backgrounds */
-  pointer-events: none; /* never blocks buttons */
+  pointer-events: none; /* never blocks clicks */
 }
 
 .heart {
@@ -33,9 +31,7 @@ body {
   pointer-events: none;
 }
 
-/* --------------------
-   CENTERED SCREENS / UI
--------------------- */
+/* Centered screens */
 .levelScreen {
   position: absolute;
   top: 50%;
@@ -70,12 +66,10 @@ button {
   position: absolute;
   width: 80px;
   cursor: pointer;
-  z-index: 5; /* above hearts */
+  z-index: 5;
 }
 
-/* --------------------
-   LEVEL 3 BACKGROUND
--------------------- */
+/* Level 3 background */
 #kittenGame {
   position: relative;
   width: 100vw;
@@ -97,17 +91,16 @@ button {
   pointer-events: none;
 }
 
-/* The hidden objects (bombs) */
+/* Hidden objects */
 .kitten {
   position: absolute;
-  font-size: 16px;     /* small but clickable */
+  font-size: 16px;
   cursor: pointer;
-  opacity: 0.75;       /* blends into background */
+  opacity: 0.75;
   user-select: none;
-  z-index: 3;          /* above background, below UI */
+  z-index: 3;
 }
 
-/* Falling animation */
 @keyframes fall {
   to {
     transform: translateY(110vh);
