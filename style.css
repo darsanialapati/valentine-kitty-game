@@ -57,11 +57,19 @@ button {
   position: relative;
   width: 100vw;
   height: 100vh;
+
   background-image: url('background.jpg');
-  background-size: contain;
-  background-color: pink; 
-  background-position: center;
+  background-size: cover;        /* full screen again */
+  background-position: center;   /* important */
   background-repeat: no-repeat;
+}
+
+#kittenGame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
 }
 
 .kitten {
