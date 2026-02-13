@@ -62,11 +62,13 @@ button {
 }
 
 /* Bird */
+
 #bird {
   position: absolute;
-  width: 80px;
+  font-size: 48px;
   cursor: pointer;
   z-index: 5;
+  user-select: none;
 }
 
 /* Level 3 background */
