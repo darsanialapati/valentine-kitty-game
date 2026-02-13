@@ -269,6 +269,7 @@ function feedKitty() {
 
   sendFish();
 }
+}
 
 function finishFeeding() {
   treats = 0;
