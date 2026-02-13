@@ -58,15 +58,17 @@ button {
   width: 100vw;
   height: 100vh;
   background-image: url('background.jpg');
-  background-size: cover;
+  background-size: contain;
+  background-color: pink; 
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .kitten {
   position: absolute;
-  font-size: 40px;
+  font-size: 26px;
   cursor: pointer;
+  filter: hue-rotate(110deg) saturate(180%) brightness(105%); /* makes emoji look green-ish */
 }
 
 /* Falling hearts */
