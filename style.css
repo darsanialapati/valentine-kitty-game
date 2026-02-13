@@ -74,8 +74,12 @@ button {
 
 .kitten {
   position: absolute;
+  font-size: 18px;     /* small but clickable */
   cursor: pointer;
+  opacity: 0.85;       /* blends into background */
+  user-select: none;
 }
+
 
 /* Falling hearts */
 .heart {
