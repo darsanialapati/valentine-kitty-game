@@ -559,17 +559,3 @@ function createHeart() {
 }
 
 setInterval(createHeart, 400);
-
-console.log("✅ script.js loaded");
-
-window.addEventListener("load", () => {
-  const btn = document.getElementById("feedBtn");
-  console.log("feedBtn found?", !!btn);
-
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    console.log("✅ Give Treats clicked");
-  });
-});
-
