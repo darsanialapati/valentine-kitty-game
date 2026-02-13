@@ -31,6 +31,7 @@ const questText = document.getElementById("questText");
 const answerInput = document.getElementById("answer");
 const feedback = document.getElementById("feedback");
 
+const kudosScene = document.getElementById("kudosScene");
 const bird = document.getElementById("bird");
 const kittenGame = document.getElementById("kittenGame");
 const finalScene = document.getElementById("finalScene");
@@ -42,6 +43,11 @@ const letterScene = document.getElementById("letterScene");
 /* --------------------
    HELPERS
 -------------------- */
+function goToFinalScene() {
+  hideAll();
+  finalScene.classList.remove("hidden");
+}
+
 function updateTreats(num) {
   treats += num;
   const fishes = "🐟".repeat(treats);
@@ -58,7 +64,8 @@ function hideAll() {
     bird,
     kittenGame,
     finalScene,
-    letterScene
+    letterScene,
+    kudosScene
   ].forEach(el => el.classList.add("hidden"));
 }
 
@@ -179,7 +186,7 @@ window.startLevel3 = function () {
       if (kittensFound === 10) {
         updateTreats(5);
         hideAll();
-        finalScene.classList.remove("hidden");
+        kudosScene.classList.remove("hidden");
       }
     };
 
