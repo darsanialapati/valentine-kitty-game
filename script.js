@@ -213,6 +213,9 @@ function startLevel3() {
 /* --------------------
    FINAL SCENE
 -------------------- */
+/* --------------------
+   FINAL SCENE
+-------------------- */
 feedBtn.addEventListener("click", feedKitty);
 
 function feedKitty() {
@@ -234,54 +237,48 @@ function feedKitty() {
     fish.style.left = Math.random() * window.innerWidth + "px";
     fish.style.top = "-40px";
     document.body.appendChild(fish);
-     
+
     const catRect = catImg.getBoundingClientRect();
     const targetX = catRect.left + catRect.width / 2;
     const targetY = catRect.top + catRect.height / 2;
 
-    // IMPORTANT: get fish start position AFTER it's on the page
     const fishRect = fish.getBoundingClientRect();
     const startX = fishRect.left + fishRect.width / 2;
     const startY = fishRect.top + fishRect.height / 2;
 
-    // Move by the delta (so it lands ON the cat)
     const dx = targetX - startX;
     const dy = targetY - startY;
-   
+
     fish.animate(
       [
         { transform: "translate(0, 0)" },
         { transform: `translate(${dx}px, ${dy}px)` }
       ],
       {
-        duration: 450,          // quicker
+        duration: 450,
         easing: "ease-in-out",
         fill: "forwards"
       }
     );
-   
+
     setTimeout(() => {
       fish.remove();
       eaten++;
-      sendFish();               // next fish immediately after
+      sendFish();
     }, 500);
+  }
 
-
+  // ✅ start the chain ONCE
   sendFish();
-}
 }
 
 function finishFeeding() {
   treats = 0;
   treatCounter.innerText = "🐾 Treats:";
 
-  // Change cat gif after feeding
-  catImg.src = "happy.gif"; // <-- use your desired gif here
+  catImg.src = "happy.gif";
 
-  // Hide the feed button
   feedBtn.style.display = "none";
-
-  // Show open letter button
   openLetterBtn.classList.remove("hidden");
 }
 
