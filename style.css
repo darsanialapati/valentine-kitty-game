@@ -74,7 +74,7 @@ button {
 
 #bird {
   position: absolute;
-  font-size: 48px;
+  font-size: 28px;
   cursor: pointer;
   z-index: 5;
   user-select: none;
