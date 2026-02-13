@@ -43,10 +43,10 @@ const letterScene = document.getElementById("letterScene");
 /* --------------------
    HELPERS
 -------------------- */
-function goToFinalScene() {
+window.goToFinalScene = function () {
   hideAll();
   finalScene.classList.remove("hidden");
-}
+};
 
 function updateTreats(num) {
   treats += num;
