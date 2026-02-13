@@ -213,74 +213,24 @@ function startLevel3() {
 /* --------------------
    FINAL SCENE
 -------------------- */
-/* --------------------
-   FINAL SCENE
--------------------- */
+
 feedBtn.addEventListener("click", feedKitty);
 
 function feedKitty() {
-  feedBtn.disabled = true;
-
-  let fishCount = treats;
-  let eaten = 0;
-
-  function sendFish() {
-    if (eaten >= fishCount) {
-      finishFeeding();
-      return;
-    }
-
-    const fish = document.createElement("div");
-    fish.innerText = "🐟";
-    fish.style.position = "absolute";
-    fish.style.fontSize = "24px";
-    fish.style.left = Math.random() * window.innerWidth + "px";
-    fish.style.top = "-40px";
-    document.body.appendChild(fish);
-
-    const catRect = catImg.getBoundingClientRect();
-    const targetX = catRect.left + catRect.width / 2;
-    const targetY = catRect.top + catRect.height / 2;
-
-    const fishRect = fish.getBoundingClientRect();
-    const startX = fishRect.left + fishRect.width / 2;
-    const startY = fishRect.top + fishRect.height / 2;
-
-    const dx = targetX - startX;
-    const dy = targetY - startY;
-
-    fish.animate(
-      [
-        { transform: "translate(0, 0)" },
-        { transform: `translate(${dx}px, ${dy}px)` }
-      ],
-      {
-        duration: 450,
-        easing: "ease-in-out",
-        fill: "forwards"
-      }
-    );
-
-    setTimeout(() => {
-      fish.remove();
-      eaten++;
-      sendFish();
-    }, 500);
-  }
-
-  // ✅ start the chain ONCE
-  sendFish();
-}
-
-function finishFeeding() {
+  // Reset treats
   treats = 0;
   treatCounter.innerText = "🐾 Treats:";
 
+  // Change cat to happy
   catImg.src = "happy.gif";
 
+  // Hide feed button
   feedBtn.style.display = "none";
+
+  // Show open letter button
   openLetterBtn.classList.remove("hidden");
 }
+
 
 function openLetter() {
   hideAll();
