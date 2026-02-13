@@ -57,6 +57,7 @@ button {
   position: relative;
   width: 100vw;
   height: 100vh;
+  z-index: 10;
 
   background-image: url('background.jpg');
   background-size: cover;        /* full screen again */
@@ -85,6 +86,7 @@ button {
 .heart {
   position: fixed;
   top: -10px;
+  z-index: 0;
   animation: fall linear forwards;
   pointer-events: none;
 }
