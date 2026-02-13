@@ -74,9 +74,9 @@ button {
 
 .kitten {
   position: absolute;
-  font-size: 18px;     /* small but clickable */
+  font-size: 16px;     /* small but clickable */
   cursor: pointer;
-  opacity: 0.85;       /* blends into background */
+  opacity: 0.75;       /* blends into background */
   user-select: none;
 }
 
