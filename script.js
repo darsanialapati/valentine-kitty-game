@@ -65,16 +65,16 @@ function hideAll() {
 /* --------------------
    INTRO → LEVEL 1
 -------------------- */
-function showLevel1Intro() {
+window.showLevel1Intro = function () {
   hideAll();
   level1Intro.classList.remove("hidden");
-}
+};
 
-function startLevel1() {
+window.startLevel1 = function () {
   hideAll();
   quest = 0;
   loadQuest();
-}
+};
 
 /* --------------------
    LEVEL 1: QUESTS
@@ -87,7 +87,7 @@ function loadQuest() {
   feedback.innerText = "";
 }
 
-function submitAnswer() {
+window.submitAnswer = function () {
   if (!quests[quest]) return;
 
   const answer = answerInput.value.trim().toLowerCase();
@@ -104,17 +104,17 @@ function submitAnswer() {
       setTimeout(() => {
         hideAll();
         level2Intro.classList.remove("hidden");
-      }, 1000);
+      }, 700);
     }
   } else {
     feedback.innerText = "Try again 😼";
   }
-}
+};
 
 /* --------------------
    LEVEL 2: BIRD CHASE
 -------------------- */
-function startLevel2() {
+window.startLevel2 = function () {
   hideAll();
   bird.classList.remove("hidden");
 
@@ -130,20 +130,20 @@ function startLevel2() {
     hideAll();
     level3Intro.classList.remove("hidden");
   };
-}
+};
 
 function moveBirdAway(e) {
   const birdRect = bird.getBoundingClientRect();
   const mouseX = e.clientX;
   const mouseY = e.clientY;
 
-  const distanceX = mouseX - (birdRect.left + birdRect.width / 2);
-  const distanceY = mouseY - (birdRect.top + birdRect.height / 2);
-  const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+  const dx = mouseX - (birdRect.left + birdRect.width / 2);
+  const dy = mouseY - (birdRect.top + birdRect.height / 2);
+  const distance = Math.sqrt(dx * dx + dy * dy);
 
   if (distance < 120) {
-    const moveX = (distanceX / distance) * 150;
-    const moveY = (distanceY / distance) * 150;
+    const moveX = (dx / distance) * 150;
+    const moveY = (dy / distance) * 150;
 
     let newLeft = birdRect.left - moveX;
     let newTop = birdRect.top - moveY;
@@ -159,7 +159,7 @@ function moveBirdAway(e) {
 /* --------------------
    LEVEL 3: FIND "KITTENS"
 -------------------- */
-function startLevel3() {
+window.startLevel3 = function () {
   hideAll();
   kittenGame.innerHTML = "";
   kittenGame.classList.remove("hidden");
@@ -185,27 +185,23 @@ function startLevel3() {
 
     kittenGame.appendChild(kitty);
   }
-}
+};
 
 /* --------------------
    FINAL SCENE
 -------------------- */
-feedBtn.addEventListener("click", feedKitty);
-
-function feedKitty() {
+feedBtn.addEventListener("click", () => {
   treats = 0;
   treatCounter.innerText = "🐾 Treats:";
-
   catImg.src = "happy.gif";
-
   feedBtn.style.display = "none";
   openLetterBtn.classList.remove("hidden");
-}
+});
 
-function openLetter() {
+window.openLetter = function () {
   hideAll();
   letterScene.classList.remove("hidden");
-}
+};
 
 /* --------------------
    FALLING HEARTS
